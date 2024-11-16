@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+  db:
+    image: 'postgres:latest'
+    container_name: 'db-postgress'
+    environment:
+      POSTGRES_USER: ${USER_POSTGRES:-postgres}
+      POSTGRES_PASSWORD: ${PASSWORD_POSTGRES:-1234}
+      POSTGRES_DB: customer-management
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "${USER_POSTGRES:-postgres}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  application:
+    container_name: 'application'
+    image: 'customer-management:1.0'
+    build:
+      context: .
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL:-jdbc:postgresql://localhost:5432/customer-management}
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME:-postgres}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD:-1234}
