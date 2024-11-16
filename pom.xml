@@ -6,6 +6,8 @@
     <groupId>br.com.paulobof</groupId>
     <artifactId>OrderManagementSystem</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>Order Management System</name>
+    <description>FIAP Project Fase 4</description>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -14,14 +16,14 @@
     </properties>
 
     <modules>
-    <module>eurekaServer</module>
-    <module>apiGateway</module>
-    <module>customerManagement</module>
-    <module>productCatalog</module>
-    <module>productCatalogBatch</module>
-    <module>orderManagementProducer</module>
-    <module>orderManagementConsumer</module>
-    <module>deliveryLogistics</module>
+    <module>eurera-server</module>
+    <module>api-gateway</module>
+    <module>customer-management</module>
+    <module>product-catalog</module>
+    <module>product-catalog-batch</module>
+    <module>order-management-producer</module>
+    <module>order-management-consumer</module>
+    <module>delivery-logistics</module>
     </modules>
 
     <dependencyManagement>

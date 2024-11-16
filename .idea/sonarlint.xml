@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SonarLintProjectSettings">
+    <option name="moduleMapping">
+      <map>
+        <entry key="api-gateway" value="apiGateway" />
+        <entry key="customer-management" value="customer-management" />
+        <entry key="delivery-logistics" value="deliveryLogistics" />
+        <entry key="eurera-server" value="serverEureka" />
+        <entry key="order-management-consumer" value="orderManagementConsumer" />
+        <entry key="order-management-producer" value="orderManagementProducer" />
+        <entry key="product-catalog" value="productCatalog" />
+        <entry key="product-catalog-batch" value="productCatalogBatch" />
+      </map>
+    </option>
+  </component>
+</project>
