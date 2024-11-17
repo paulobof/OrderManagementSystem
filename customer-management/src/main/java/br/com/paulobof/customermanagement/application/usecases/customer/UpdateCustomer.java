@@ -9,7 +9,7 @@ public class UpdateCustomer {
 
     private final ICustomerRepository customerRepository;
 
-    public Customer updateCustomer(Long custumerCode, Customer customer){
-        return customerRepository.updateCustomer(custumerCode, customer);
+    public Customer updateCustomer(Long customerCode, Customer customer){
+        return customerRepository.updateCustomer(customerCode, customer);
     }
 }

@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CustomerController {
 
-    private final CreateCustomer createCustomeUseCase;
+    private final CreateCustomer createCustomerUseCase;
     private final GetByCustomerCode getByCustomerCodeUseCase;
     private final GetAllCustomer getAllCustomerUseCase;
     private final UpdateCustomer updateCustomerUseCase;
@@ -30,7 +30,7 @@ public class CustomerController {
     public ResponseEntity<CustomerDto> createCustomer (
             @RequestBody CustomerDto customerDto) {
 
-        Customer customer = createCustomeUseCase.createCustomer(
+        Customer customer = createCustomerUseCase.createCustomer(
                 new Customer(customerDto.name(), customerDto.email(), customerDto.phone(), customerDto.number(), customerDto.address()));
 
         return ResponseEntity.status(HttpStatus.CREATED)
