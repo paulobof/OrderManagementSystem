@@ -1,17 +1,17 @@
 package br.com.paulobof.customermanagement.infra.mapper;
 
-import br.com.paulobof.customermanagement.infra.persistence.entities.CustomerEntity;
 import br.com.paulobof.customermanagement.domain.entities.Customer;
+import br.com.paulobof.customermanagement.infra.persistence.entities.CustomerEntity;
 
 public class CustomerMapper {
 
     public CustomerEntity toEntity(Customer customer) {
-        return new CustomerEntity(
-            customer.getName(),
-            customer.getNumber(),
-            customer.getEmail(),
-            customer.getPhone(),
-            customer.getAddress()
+        return new br.com.paulobof.customermanagement.infra.persistence.entities.CustomerEntity(
+                customer.getName(),
+                customer.getNumber(),
+                customer.getEmail(),
+                customer.getPhone(),
+                customer.getAddress()
         );
     }
 
@@ -27,4 +27,3 @@ public class CustomerMapper {
     }
 
 }
-

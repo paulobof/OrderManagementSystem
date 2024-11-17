@@ -6,12 +6,13 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
+
 @RequiredArgsConstructor
 public class GetAllCustomer {
 
     private final ICustomerRepository customerRepository;
 
-    List<Customer> getAllCustomer() {
+    public List<Customer> getAllCustomer() {
         return customerRepository.getAllCustomer();
     }
 

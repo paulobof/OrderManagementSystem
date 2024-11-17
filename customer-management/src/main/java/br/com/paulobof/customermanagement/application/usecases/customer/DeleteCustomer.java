@@ -8,7 +8,7 @@ public class DeleteCustomer {
 
     private final ICustomerRepository customerRepository;
 
-    void deleteCustomer(Long customerCode){
+    public void deleteCustomer(Long customerCode){
         customerRepository.deleteCustomer(customerCode);
     }
 }

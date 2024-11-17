@@ -9,7 +9,7 @@ public class GetByCustomerCode {
 
     private final ICustomerRepository customerRepository;
 
-    Customer getByCustomerCode(Long customerCode){
+    public Customer getByCustomerCode(Long customerCode){
         return customerRepository.getByCustomerCode(customerCode);
     }
 }

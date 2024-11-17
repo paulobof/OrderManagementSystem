@@ -5,39 +5,51 @@ import br.com.paulobof.customermanagement.domain.entities.Customer;
 import br.com.paulobof.customermanagement.infra.mapper.CustomerMapper;
 import br.com.paulobof.customermanagement.infra.persistence.entities.CustomerEntity;
 import br.com.paulobof.customermanagement.infra.persistence.repository.CustomerRepository;
+import br.com.paulobof.customermanagement.interfaces.controller.mapper.CustomerMapperDto;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 @RequiredArgsConstructor
 public class CustomerRepositoryImpl  implements ICustomerRepository {
 
     private final CustomerRepository customerRepository;
     private final CustomerMapper customerMapper;
+    private final CustomerMapperDto customerMapperDto;
 
     public Customer createCustomer(Customer customer) {
         CustomerEntity customerEntity = customerMapper.toEntity(customer);
-        customerEntity = customerRepository.save(customerEntity);
+        return customerMapper.toCustomer( customerRepository.save(customerEntity));
+    }
+
+    public Customer getByCustomerCode(Long customerCode) {
+        CustomerEntity customerEntity = customerRepository.findById(customerCode)
+                .orElseThrow( () -> new EntityNotFoundException("Customer not found"));
         return customerMapper.toCustomer(customerEntity);
     }
 
     public List<Customer> getAllCustomer() {
-        return null;
+        List<CustomerEntity> customers  = customerRepository.findAll();
+        return customers.stream()
+                .map(customerMapper::toCustomer)
+                .collect(Collectors.toList());
     }
 
-    public Customer getByCustomerCode(Long customerCode) {
-        return null;
-    }
-
-    public Customer updateCustomer(Customer customer) {
-        return null;
+    public Customer updateCustomer(Long customerCode, Customer customer) {
+        CustomerEntity customerEntity = customerMapper.toEntity(customer);
+        customerEntity.setCustomerCode(customerCode);
+        CustomerEntity updatedEntity = customerRepository.save(customerEntity);
+        return customerMapper.toCustomer(updatedEntity);
     }
 
     public void deleteCustomer(Long customerCode) {
-
+        customerRepository.deleteById(customerCode);
     }
 
     public  Boolean existsCustomer(Long customerCode) {
-        return false;
+        return customerRepository.existsById(customerCode);
     }
 
 }

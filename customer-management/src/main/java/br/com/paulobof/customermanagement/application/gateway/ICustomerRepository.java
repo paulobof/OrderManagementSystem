@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface ICustomerRepository {
 
-    Customer createCustomer(Customer customer);
+    Customer createCustomer(Customer customerEntity);
 
     List<Customer> getAllCustomer();
 
     Customer getByCustomerCode(Long customerCode);
 
-    Customer updateCustomer(Customer customer);
+    Customer updateCustomer(Long customerCode, Customer customerEntity);
 
     void deleteCustomer(Long customerCode);
 
