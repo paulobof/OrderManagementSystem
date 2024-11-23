@@ -1,4 +1,4 @@
-package br.com.paulobof.customermanagement.infra.gateways;
+package br.com.paulobof.customermanagement.infra.gateway;
 
 import br.com.paulobof.customermanagement.application.gateway.ICustomerRepository;
 import br.com.paulobof.customermanagement.domain.entities.Customer;

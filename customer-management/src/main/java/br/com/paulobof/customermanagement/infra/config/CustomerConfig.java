@@ -3,7 +3,7 @@ package br.com.paulobof.customermanagement.infra.config;
 import br.com.paulobof.customermanagement.application.gateway.ICustomerRepository;
 import br.com.paulobof.customermanagement.application.usecases.customer.*;
 import br.com.paulobof.customermanagement.infra.mapper.CustomerMapper;
-import br.com.paulobof.customermanagement.infra.gateways.CustomerRepositoryImpl;
+import br.com.paulobof.customermanagement.infra.gateway.CustomerRepositoryImpl;
 import br.com.paulobof.customermanagement.infra.persistence.repository.CustomerRepository;
 import br.com.paulobof.customermanagement.interfaces.controller.mapper.CustomerMapperDto;
 import org.springframework.context.annotation.Bean;
