@@ -1,137 +1,50 @@
-
-version: '3.9'
-
+version: '3.8'
 services:
-  eureka-server:
-    build: ./server_eureka
-    container_name: 'eureka-server-container'
+  db:
+    image: 'postgres:latest'
+    environment:
+      POSTGRES_USER: ${USER_POSTGRES}
+      POSTGRES_PASSWORD: ${PASSWORD_POSTGRES}
+      POSTGRES_DB: customer-management
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "${USER_POSTGRES}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  gateway:
+    container_name: 'API-GATEWAY'
+    image: 'api-gateway:1.0'
+    build:
+      context: .
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+
+  eureka:
+    container_name: 'EUREKA-SERVER'
+    image: 'eureka:1.0'
+    build:
+      context: .
+    depends_on:
+      db:
+        condition: service_healthy
     ports:
       - "8761:8761"
 
-  customer-management-db:
-    image: postgres:13
-    container_name: customer_management_db
-    environment:
-      POSTGRES_DB: customer_management_db
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-    ports:
-      - "5432:5432"
-    volumes:
-      - customer_management_data:/var/lib/postgresql/data
-
-  customer-management-service:
-    build: ./customerManagement
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://customer-management-db:5432/customer_management_db
-      SPRING_DATASOURCE_USERNAME: user
-      SPRING_DATASOURCE_PASSWORD: password
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
-    ports:
-      - "8081:8081"
+  aplication-logistica:
+    container_name: 'MS-LOGISTICA'
+    image: 'ms-logistica:1.0'
+    build:
+      context: .
     depends_on:
-      - customer-management-db
-
-  order-management-consumer-db:
-    image: postgres:13
-    container_name: order_management_consumer_db
+      db:
+        condition: service_healthy
     environment:
-      POSTGRES_DB: order_management_consumer_db
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-    ports:
-      - "5433:5432"
-    volumes:
-      - order_management_consumer_data:/var/lib/postgresql/data
-
-  order-management-consumer-service:
-    build: ./orderManagementConsumer
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://order-management-consumer-db:5433/order_management_consumer_db
-      SPRING_DATASOURCE_USERNAME: user
-      SPRING_DATASOURCE_PASSWORD: password
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
-    ports:
-      - "8082:8082"
-    depends_on:
-      - order-management-consumer-db
-
-  order-management-producer-db:
-    image: postgres:13
-    container_name: order_management_producer_db
-    environment:
-      POSTGRES_DB: order_management_producer_db
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-    ports:
-      - "5434:5432"
-    volumes:
-      - order_management_producer_data:/var/lib/postgresql/data
-
-  order-management-producer-service:
-    build: ./orderManagementProducer
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://order-management-producer-db:5434/order_management_producer_db
-      SPRING_DATASOURCE_USERNAME: user
-      SPRING_DATASOURCE_PASSWORD: password
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
-    ports:
-      - "8083:8083"
-    depends_on:
-      - order-management-producer-db
-
-  product-catalog-db:
-    image: postgres:13
-    container_name: product_catalog_db
-    environment:
-      POSTGRES_DB: product_catalog_db
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-    ports:
-      - "5435:5432"
-    volumes:
-      - product_catalog_data:/var/lib/postgresql/data
-
-  product-catalog-service:
-    build: ./productCatalog
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://product-catalog-db:5435/product_catalog_db
-      SPRING_DATASOURCE_USERNAME: user
-      SPRING_DATASOURCE_PASSWORD: password
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
-    ports:
-      - "8084:8084"
-    depends_on:
-      - product-catalog-db
-
-  delivery-logistics-db:
-    image: postgres:13
-    container_name: delivery_logistics_db
-    environment:
-      POSTGRES_DB: delivery_logistics_db
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-    ports:
-      - "5436:5432"
-    volumes:
-      - delivery_logistics_data:/var/lib/postgresql/data
-
-  delivery-logistics-service:
-    build: ./deliveryLogistics
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://delivery-logistics-db:5436/delivery_logistics_db
-      SPRING_DATASOURCE_USERNAME: user
-      SPRING_DATASOURCE_PASSWORD: password
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
-    ports:
-      - "8085:8085"
-    depends_on:
-      - delivery-logistics-db
-
-
-volumes:
-  customer_management_data:
-  order_management_consumer_data:
-  order_management_producer_data:
-  product_catalog_data:
-  delivery_logistics_data:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/ms-logistica
+      SPRING_DATASOURCE_USERNAME: ${USER_POSTGRES}
+      SPRING_DATASOURCE_PASSWORD: ${PASSWORD_POSTGRES}

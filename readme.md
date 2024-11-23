@@ -13,7 +13,7 @@
 
 ## POSTMAN LINK
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://www.postman.com/lively-moon-837353/workspace/ordermanagementsystem-fase-4/request/18751134-dd012a59-12ff-4127-95e0-dd4790a67edf?action=share&creator=18751134&ctx=documentation)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/join-team?invite_code=cda99e18652b1911e9eced09ca97f248&target_code=d46459f0b2ce95b5999bcc48a45a3a1b)
 
 ###  Participantes
 
