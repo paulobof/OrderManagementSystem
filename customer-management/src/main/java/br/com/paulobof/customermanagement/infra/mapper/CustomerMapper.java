@@ -8,9 +8,9 @@ public class CustomerMapper {
     public CustomerEntity toEntity(Customer customer) {
         return new br.com.paulobof.customermanagement.infra.persistence.entities.CustomerEntity(
                 customer.getName(),
-                customer.getNumber(),
+                customer.getDocumentNumber(),
                 customer.getEmail(),
-                customer.getPhone(),
+                customer.getPostalCode(),
                 customer.getAddress()
         );
     }
@@ -19,9 +19,9 @@ public class CustomerMapper {
         return new Customer(
                 customerEntity.getCustomerCode(),
                 customerEntity.getName(),
-                customerEntity.getNumber(),
+                customerEntity.getDocumentNumber(),
                 customerEntity.getEmail(),
-                customerEntity.getPhone(),
+                customerEntity.getPostalCode(),
                 customerEntity.getAddress()
         );
     }

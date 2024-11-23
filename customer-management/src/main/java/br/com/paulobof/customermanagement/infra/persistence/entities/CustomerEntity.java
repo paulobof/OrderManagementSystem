@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
+@Entity(name = "customer")
 @Table(name = "customer")
 @Getter
 @Setter
@@ -21,19 +21,19 @@ public class CustomerEntity {
 
     private  String name;
 
-    private String number;
+    private String documentNumber;
 
     private String email;
 
-    private String phone;
+    private String postalCode;
 
     private String address;
 
-    public CustomerEntity(String name, String number, String email, String phone, String address) {
+    public CustomerEntity(String name, String documentNumber, String email, String postalCode, String address) {
         this.name = name;
-        this.number = number;
+        this.documentNumber = documentNumber;
         this.email = email;
-        this.phone = phone;
+        this.postalCode = postalCode;
         this.address = address;
     }
 }

@@ -11,7 +11,7 @@
 	<groupId>br.com.paulobof</groupId>
 	<artifactId>customer-management</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>customer-management</name>
+	<name>product-management</name>
 	<description>FIAP Project Fase 4</description>
 	<url/>
 	<licenses>
@@ -72,6 +72,11 @@
 		<dependency>
 			<groupId>org.xmlunit</groupId>
 			<artifactId>xmlunit-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
 	<dependencyManagement>

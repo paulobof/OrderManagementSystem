@@ -8,9 +8,9 @@ public record CustomerDto (
 
     Long customerCode,
     String name,
-    String number,
+    String documentNumber,
     String email,
-    String phone,
+    String postalCode,
     String address
 
 ) {}

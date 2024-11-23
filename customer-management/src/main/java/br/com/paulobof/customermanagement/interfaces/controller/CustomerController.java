@@ -2,7 +2,6 @@ package br.com.paulobof.customermanagement.interfaces.controller;
 
 import br.com.paulobof.customermanagement.application.usecases.customer.*;
 import br.com.paulobof.customermanagement.domain.entities.Customer;
-import br.com.paulobof.customermanagement.infra.mapper.CustomerMapper;
 import br.com.paulobof.customermanagement.interfaces.controller.mapper.CustomerMapperDto;
 import br.com.paulobof.customermanagement.interfaces.dto.CustomerDto;
 import lombok.RequiredArgsConstructor;
@@ -31,10 +30,10 @@ public class CustomerController {
             @RequestBody CustomerDto customerDto) {
 
         Customer customer = createCustomerUseCase.createCustomer(
-                new Customer(customerDto.name(), customerDto.email(), customerDto.phone(), customerDto.number(), customerDto.address()));
+                new Customer(customerDto.name(), customerDto.documentNumber(),customerDto.email(), customerDto.postalCode(), customerDto.address()));
 
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(new CustomerDto(customer.getCustomerCode(), customer.getName(), customer.getNumber(), customer.getEmail(), customer.getPhone(), customer.getAddress()));
+                .body(new CustomerDto(customer.getCustomerCode(), customer.getName(), customer.getDocumentNumber(), customer.getEmail(), customer.getPostalCode(), customer.getAddress()));
     }
 
     @GetMapping("/{customerCode}")

@@ -9,9 +9,9 @@ public class CustomerMapperDto {
         return new CustomerDto(
                 customer.getCustomerCode(),
                 customer.getName(),
-                customer.getNumber(),
+                customer.getDocumentNumber(),
                 customer.getEmail(),
-                customer.getPhone(),
+                customer.getPostalCode(),
                 customer.getAddress()
                 );
     }
