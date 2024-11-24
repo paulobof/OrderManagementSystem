@@ -21,11 +21,9 @@
         <module>api-gateway</module>
         <module>customer-management</module>
         <module>product-catalog</module>
-        <module>product-catalog-batch</module>
         <module>order-management-producer</module>
         <module>order-management-consumer</module>
         <module>delivery-logistics</module>
-        <module>product-catalog-batch</module>
     </modules>
 
     <dependencyManagement>
