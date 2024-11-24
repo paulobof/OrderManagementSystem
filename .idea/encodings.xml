@@ -11,11 +11,9 @@
     <file url="file://$PROJECT_DIR$/order-management-consumer/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/order-management-consumer/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/order-management-producer/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/order-management-producer/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/product-catalog-batch/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/product-catalog-batch/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/product-catalog/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/product-catalog/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>

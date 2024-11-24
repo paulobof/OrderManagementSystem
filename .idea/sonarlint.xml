@@ -4,7 +4,7 @@
     <option name="moduleMapping">
       <map>
         <entry key="api-gateway" value="apiGateway" />
-        <entry key="customer-management" value="customerEntity-management" />
+        <entry key="customer-management" value="product-management" />
         <entry key="delivery-logistics" value="deliveryLogistics" />
         <entry key="eurera-server" value="serverEureka" />
         <entry key="order-management-consumer" value="orderManagementConsumer" />

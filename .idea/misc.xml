@@ -7,8 +7,23 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/server_eureka/pom.xml" />
         <option value="$PROJECT_DIR$/api-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/delivery-logistics/pom.xml" />
+        <option value="$PROJECT_DIR$/order-management-consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/eurera-server/pom.xml" />
+        <option value="$PROJECT_DIR$/customer-management/pom.xml" />
+        <option value="$PROJECT_DIR$/order-management-producer/pom.xml" />
+        <option value="$PROJECT_DIR$/product-catalog/pom.xml" />
+        <option value="$PROJECT_DIR$/pow.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/product-catalog-batch/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" project-jdk-name="corretto-17" project-jdk-type="JavaSDK" />
+  <component name="ProjectType">
+    <option name="id" value="jpab" />
+  </component>
 </project>

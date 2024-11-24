@@ -7,11 +7,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="product-catalog" />
         <module name="customer-management" />
-        <module name="product-catalog-batch" />
-        <module name="eurera-server" />
+        <module name="product-catalog" />
         <module name="delivery-logistics" />
+        <module name="eurera-server" />
         <module name="api-gateway" />
         <module name="customerManagement" />
         <module name="order-management-producer" />
@@ -21,6 +20,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="gateway" target="17" />
+      <module name="product-catalog-batch" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -28,9 +28,14 @@
       <module name="api-gateway" options="-parameters" />
       <module name="customer-management" options="-parameters" />
       <module name="customerManagement" options="-parameters" />
+      <module name="delivery-logistics" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
       <module name="eurera-server" options="-parameters" />
       <module name="gateway" options="-parameters" />
+      <module name="order-management-consumer" options="-parameters" />
+      <module name="order-management-producer" options="-parameters" />
+      <module name="product-catalog" options="-parameters" />
+      <module name="product-catalog-batch" options="-parameters" />
     </option>
   </component>
 </project>
