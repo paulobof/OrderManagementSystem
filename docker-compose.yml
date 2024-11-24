@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.9'
 services:
   db:
     image: 'postgres:latest'
@@ -13,6 +13,33 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    entrypoint: >
+      /bin/bash -c "
+        rabbitmq-server &
+        sleep 10 &&
+        rabbitmqctl wait /var/lib/rabbitmq/mnesia/rabbit@$(hostname).pid &&
+        rabbitmqctl add_vhost / &&
+        rabbitmqctl set_permissions -p / guest '.*' '.*' '.*' &&
+        rabbitmqadmin declare exchange name=order-request-exchange type=direct &&
+        rabbitmqadmin declare exchange name=order-response-error-exchange type=direct &&
+        rabbitmqadmin declare exchange name=order-response-successful-exchange type=direct &&
+        rabbitmqadmin declare queue name=order-request-queue durable=true &&
+        rabbitmqadmin declare queue name=order-response-error-queue durable=true &&
+        rabbitmqadmin declare queue name=order-response-successful-queue durable=true &&
+        rabbitmqadmin --vhost=/ declare binding source=order-request-exchange destination=order-request-queue routing_key=order-request-rout-key &&
+        rabbitmqadmin --vhost=/ declare binding source=order-response-error-exchange destination=order-response-error-queue routing_key=order-response-error-rout-key &&
+        rabbitmqadmin --vhost=/ declare binding source=order-response-successful-exchange destination=order-response-successful-queue routing_key=order-response-successful-rout-key &&
+        tail -f /dev/null
+      "
 
   gateway:
     container_name: 'API-GATEWAY'
@@ -36,15 +63,15 @@ services:
     ports:
       - "8761:8761"
 
-  aplication-logistica:
-    container_name: 'MS-LOGISTICA'
-    image: 'ms-logistica:1.0'
-    build:
-      context: .
-    depends_on:
-      db:
-        condition: service_healthy
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/ms-logistica
-      SPRING_DATASOURCE_USERNAME: ${USER_POSTGRES}
-      SPRING_DATASOURCE_PASSWORD: ${PASSWORD_POSTGRES}
+
+volumes:
+  rabbitmq_data:
+
+
+
+
+
+
+
+
+

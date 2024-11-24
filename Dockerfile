@@ -1,4 +1,7 @@
-FROM openjdk:17-jdk-slim
-VOLUME /tmp
-COPY target/*.jar app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+FROM rabbitmq:management
+
+COPY init.sh /init.sh
+RUN chmod +x /init.sh
+CMD ["sh", "/init.sh & rabbitmq-server"]
+
+
