@@ -12,6 +12,7 @@
         <module name="delivery-logistics" />
         <module name="eurera-server" />
         <module name="api-gateway" />
+        <module name="ms-logistica" />
         <module name="customerManagement" />
         <module name="order-management-producer" />
         <module name="eureka-server" />
@@ -19,6 +20,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="delivery-logistics" target="17" />
       <module name="gateway" target="17" />
       <module name="product-catalog-batch" target="17" />
     </bytecodeTargetLevel>
@@ -32,6 +34,7 @@
       <module name="eureka-server" options="-parameters" />
       <module name="eurera-server" options="-parameters" />
       <module name="gateway" options="-parameters" />
+      <module name="ms-logistica" options="-parameters" />
       <module name="order-management-consumer" options="-parameters" />
       <module name="order-management-producer" options="-parameters" />
       <module name="product-catalog" options="-parameters" />
